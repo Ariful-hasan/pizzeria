@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('value');
             $table->index(['order_id', 'name']);
+            $table->timestamps();
         });
     }
 
