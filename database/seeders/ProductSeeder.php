@@ -17,10 +17,12 @@ class ProductSeeder extends Seeder
     {
         Product::create([
             'name' => 'Dominos',
+            'delivery_type' => 'D',
         ]);
 
         Product::create([
             'name' => 'New York Pizza',
+            'delivery_type' => 'T',
         ]);
     }
 }

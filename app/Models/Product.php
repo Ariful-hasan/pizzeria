@@ -17,4 +17,9 @@ class Product extends Model
     protected $fillable = [
         'name'
     ];
+
+    public function orderItems()
+    {
+        return $this->belongsToMany(OrderItem::class);
+    }
 }

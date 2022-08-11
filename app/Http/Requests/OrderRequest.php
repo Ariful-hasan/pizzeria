@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class OrderRequest extends FormRequest
@@ -18,29 +19,20 @@ class OrderRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
+     * 
+     * E=Email, S=SMS
      *
      * @return array<string, mixed>
      */
     public function rules()
     {
+        // user need to be checked by JWT or else.
         return [
-            'user_id' => 'required|exists:App\Models\User,id',
-            'pizza' => 'required|exists:App\Models\Product,id',
-            'bottom' => 'required|exists:App\Models\ProductCategory,id',
-            'topping' => 'required|exists:App\Models\ProductCategory,id',
-        ];
-    }
-
-    /**
-     * Get the error messages for the defined validation rules.
-     *
-     * @return array
-     */
-    public function messages()
-    {
-        return [
-            'pizza.required' => 'Pizza is required',
-            'pizza.exists' => 'Pizza not found',
+            'user' => 'required|numeric',
+            'pizza' => 'required|numeric|exists:App\Models\Product,id',
+            'bottom' => 'required|numeric|exists:App\Models\ProductCategory,id',
+            'topping' => 'required|numeric|exists:App\Models\ProductCategory,id',
+            'notification' => 'required', Rule::in(config('constants.ORDER_NOTIFICATION_METHODS')),
         ];
     }
 }

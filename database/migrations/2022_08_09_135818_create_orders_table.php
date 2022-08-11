@@ -16,11 +16,9 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->string('status');
-            $table->string('delivery');
-            $table->string('communication');
+            $table->string('notification_type');
             $table->timestamps();
         });
     }

@@ -16,9 +16,22 @@ class Order extends Model
      */
     protected $fillable = [
         'user_id',
-        'product_id',
         'status',
-        'delivery',
-        'communication',
+        'notification_type',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function items()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
+    public function details()
+    {
+        return $this->hasManyThrough(OrderDetail::class, OrderItem::class);
+    }
 }

@@ -15,8 +15,12 @@ class OrderDetail extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'order_id',
-        'name',
-        'value'
+        'order_item_id',
+        'product_category_id',
     ];
+
+    public function item()
+    {
+        return $this->belongsTo(OrderItem::class);
+    }
 }

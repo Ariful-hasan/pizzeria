@@ -2,12 +2,17 @@
 
 namespace App\Http\Controllers\Client;
 
+use App\Contracts\OrderContract;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OrderRequest;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    public function __construct(protected OrderContract $orderService)
+    {
+        # code...
+    }
     /**
      * Display a listing of the resource.
      *
@@ -37,7 +42,7 @@ class OrderController extends Controller
     public function store(OrderRequest $request)
     {
         $validated = $request->validated();
-        return response()->json($validated);
+        return $this->orderService->placeOrder($validated);
     }
 
     /**
