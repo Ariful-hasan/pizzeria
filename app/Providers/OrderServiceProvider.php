@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Contracts\NotificationContract;
 use App\Contracts\OrderContract;
 use App\Contracts\OrderRepositoryContract;
 use App\Repositories\OrderRepository;
+use App\Services\NotificationService;
 use App\Services\OrderService;
 use Illuminate\Support\ServiceProvider;
 
@@ -29,5 +31,6 @@ class OrderServiceProvider extends ServiceProvider
     {
         $this->app->bind(OrderContract::class, OrderService::class);
         $this->app->bind(OrderRepositoryContract::class, OrderRepository::class);
+        $this->app->bind(NotificationContract::class, NotificationService::class);
     }
 }
