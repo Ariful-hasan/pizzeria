@@ -30,8 +30,8 @@ class Order extends Model
         return $this->hasMany(OrderItem::class);
     }
 
-    public function details()
-    {
-        return $this->hasManyThrough(OrderDetail::class, OrderItem::class);
-    }
+    // public function details()
+    // {
+    //     return $this->hasOneThrough(OrderDetail::class, OrderItem::class);
+    // }
 }

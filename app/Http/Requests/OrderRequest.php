@@ -27,12 +27,20 @@ class OrderRequest extends FormRequest
     public function rules()
     {
         // user need to be checked by JWT or else.
+        // return [
+        //     'user' => 'required|numeric',
+        //     'pizza' => 'required|numeric|exists:App\Models\Product,id',
+        //     'bottom' => 'required|numeric|exists:App\Models\ProductCategory,id',
+        //     'topping' => 'required|numeric|exists:App\Models\ProductCategory,id',
+        //     'notification' => 'required', Rule::in(config('constants.ORDER_NOTIFICATION_METHODS')),
+        // ];
+
         return [
             'user' => 'required|numeric',
-            'pizza' => 'required|numeric|exists:App\Models\Product,id',
-            'bottom' => 'required|numeric|exists:App\Models\ProductCategory,id',
-            'topping' => 'required|numeric|exists:App\Models\ProductCategory,id',
             'notification' => 'required', Rule::in(config('constants.ORDER_NOTIFICATION_METHODS')),
+            'products.*.product' => 'required|numeric|exists:App\Models\Product,id',
+            'products.*.topping' => 'required|numeric|exists:App\Models\ProductCategory,id',
+            'products.*.bottom' => 'required|numeric|exists:App\Models\ProductCategory,id',
         ];
     }
 }

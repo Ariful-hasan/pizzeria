@@ -13,6 +13,31 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    // return view('welcome');
+
+    $data = ['products' => [
+                    [
+                        "pizza"=> 1,
+                        "bottom"=> 3,
+                        "topping"=> 4
+                    ],
+                    [
+                        "pizza"=> 2,
+                        "bottom"=> 1,
+                        "topping"=> 2
+                    ]
+                ]
+            ];
+    dump($data);
+
+    // $test = array_filter($data['products'] , function($val, $key) {
+    //     dump($key);
+    //     dump($val['pizza']);
+    //     return $val['pizza'];
+    // }, ARRAY_FILTER_USE_BOTH);
+
+    $test = array_column($data['products'], 'pizza');
+
+    dd($test);
+});
